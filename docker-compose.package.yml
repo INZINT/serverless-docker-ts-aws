@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  app:
+    container_name: vyrill-package
+    build:
+      context: .
+      target: package
+    image: vyrill:package
+    volumes:
+      - sls-package:/app/.serverless
+    environment:
+      NODE_ENV: dev
+      STAGE: ${STAGE}
+      AWS_REGION: ${AWS_REGION}
+      ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+volumes:
+  sls-package:
